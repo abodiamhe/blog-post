@@ -1,0 +1,33 @@
+{
+  "root": true,
+  // ESlint understand browser-specific globals such as document and windows
+  "env": {
+    "browser": true
+  },
+  // Specify that we using the latest ESCMAScript version
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  // Extend our recommended configuration
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:jsx-a11y/recommended",
+    "prettier" //let prettier handle code style
+  ],
+
+  // Deteect our installed react version
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  //ESlint should only lint .js and .jsx file
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"]
+    }
+  ]
+}
