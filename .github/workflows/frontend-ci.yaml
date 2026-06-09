@@ -14,7 +14,7 @@ jobs:
     # run our tests multiple times with diff variables
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [20.x, 22.x]
     # define the steps inside our job
     steps:
       # check out our repository (downloads your repository into the GitHub runner)
