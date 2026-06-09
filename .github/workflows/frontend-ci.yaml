@@ -1,0 +1,35 @@
+name: Blog Frontend CI
+# listen to events
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+# define a job that will run the linter and build the frontend
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    # run our tests multiple times with diff variables
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    # define the steps inside our job
+    steps:
+      # check out our repository (downloads your repository into the GitHub runner)
+      - uses: actions/checkout@v3
+      # set up Node.js inside our container
+      - name: Use Node.js ${{ matrix.node-version }}
+        # Installs Node.js on the runner
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      # install dependencies, run the linter, and build our frontend
+      - name: Install dependencies
+        run: npm install
+      - name: Run linter on frontend
+        run: npm run linter
+      - name: Build frontend
+        run: npm run build
